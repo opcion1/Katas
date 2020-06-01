@@ -8,12 +8,17 @@ namespace BowlingGame
     {
         Frame[] _emptyGame;
         private readonly GameValidator _gameValidator;
+        private readonly GameAnalyzor _gameAnalyzor;
         private readonly GameScoreCalculator _gameScoreCalculator;
+        private bool _isGameOver;
+        private const string GAME_OVER = "The game is over";
 
         public Game()
         {
+            _isGameOver = false;
             _emptyGame = InitializeEmptyGame();
-            _gameValidator = new GameValidator(_emptyGame);
+            _gameValidator = new GameValidator();
+            _gameAnalyzor = new GameAnalyzor(_emptyGame);
             _gameScoreCalculator = new GameScoreCalculator();
         }
 
@@ -30,10 +35,15 @@ namespace BowlingGame
 
         public void Roll(int pins)
         {
-            (bool isValid, bool isStrike, bool isSpare) validAndAnalyse = _gameValidator.ValidateGame(pins);
-            if (validAndAnalyse.isValid)
+            if (_isGameOver)
+                throw new ArgumentException(GAME_OVER);
+
+            int? firstAttempScore = _gameAnalyzor.GetFirstAttempScore();
+            if (_gameValidator.IsThrowValid(pins, firstAttempScore))
             {
-                _gameScoreCalculator.UpdateScore(pins, validAndAnalyse.isSpare, validAndAnalyse.isStrike);
+                (bool isGameOver, bool doesTwoNextCountDouble, bool doesNextCountDouble) = _gameAnalyzor.UpdateGame(pins);
+                _gameScoreCalculator.UpdateScore(pins, doesNextCountDouble, doesTwoNextCountDouble);
+                _isGameOver = isGameOver;
             }
         }
         public int Score()

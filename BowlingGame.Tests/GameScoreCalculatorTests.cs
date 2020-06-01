@@ -19,9 +19,9 @@ namespace BowlingGame.Tests
         {
             //Act
             _gameScoreCalculator
-                .UpdateScore(score: 3, isSpare: false, isStrike: false)
-                .UpdateScore(7, isSpare: true, isStrike: false)
-                .UpdateScore(5, isSpare: false, isStrike: false);
+                .UpdateScore(score: 3, doesNextCountDouble: false, doesTwoNextCountDouble: false)
+                .UpdateScore(7, doesNextCountDouble: true, doesTwoNextCountDouble: false)
+                .UpdateScore(5, doesNextCountDouble: false, doesTwoNextCountDouble: false);
             //Assert
             Assert.Equal(20, _gameScoreCalculator.Score);
         }
@@ -30,11 +30,11 @@ namespace BowlingGame.Tests
         {
             //Act
             int scoreOne = _gameScoreCalculator
-                            .UpdateScore(10, isSpare: false, isStrike: true)
-                            .UpdateScore(7, isSpare: false, isStrike: false)
+                            .UpdateScore(10, doesNextCountDouble: false, doesTwoNextCountDouble: true)
+                            .UpdateScore(7, doesNextCountDouble: false, doesTwoNextCountDouble: false)
                             .Score;
             int scoreTwo = _gameScoreCalculator
-                            .UpdateScore(2, isSpare: false, isStrike: false)
+                            .UpdateScore(2, doesNextCountDouble: false, doesTwoNextCountDouble: false)
                             .Score;
 
             Assert.Equal(24, scoreOne);
@@ -45,8 +45,8 @@ namespace BowlingGame.Tests
         {
             //Act
             int scoreOne = _gameScoreCalculator
-                            .UpdateScore(2, isSpare: false, isStrike: false)
-                            .UpdateScore(7, isSpare: false, isStrike: false)
+                            .UpdateScore(2, doesNextCountDouble: false, doesTwoNextCountDouble: false)
+                            .UpdateScore(7, doesNextCountDouble: false, doesTwoNextCountDouble: false)
                             .Score;
 
             //Assert

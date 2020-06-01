@@ -62,5 +62,32 @@ namespace BowlingGame.Tests
             Assert.Equal(27, score3);
             Assert.Equal(35, score4);
         }
+        [Fact]
+        public void Roll_ThrowArgumentException_WhenGameIsOver()
+        {
+            Game game = new Game();
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+            game.Roll(4);
+            game.Roll(3);
+
+            Assert.Throws<ArgumentException>(() => game.Roll(4));
+        }
     }
 }

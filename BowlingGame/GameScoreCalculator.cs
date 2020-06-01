@@ -17,15 +17,15 @@ namespace BowlingGame
             _currentScoreWeight = 1;
             _nextScoreWeight = 1;
         }
-        public GameScoreCalculator UpdateScore(int score, bool isSpare, bool isStrike)
+        public GameScoreCalculator UpdateScore(int score, bool doesNextCountDouble, bool doesTwoNextCountDouble)
         {
             _score += score * _currentScoreWeight;
-            if (isStrike)
+            if (doesTwoNextCountDouble)
             {
                 _currentScoreWeight = _nextScoreWeight+1;
                 _nextScoreWeight = 2;
             }
-            else if (isSpare)
+            else if (doesNextCountDouble)
             {
                 _currentScoreWeight = _nextScoreWeight+1;
                 _nextScoreWeight = 1;
