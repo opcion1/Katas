@@ -1,0 +1,9 @@
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\bin\Debug\netcoreapp3.1\FileLogger.deps.json
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\bin\Debug\netcoreapp3.1\FileLogger.dll
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\bin\Debug\netcoreapp3.1\FileLogger.pdb
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\obj\Debug\netcoreapp3.1\FileLogger.csprojAssemblyReference.cache
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\obj\Debug\netcoreapp3.1\FileLogger.AssemblyInfoInputs.cache
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\obj\Debug\netcoreapp3.1\FileLogger.AssemblyInfo.cs
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\obj\Debug\netcoreapp3.1\FileLogger.csproj.CoreCompileInputs.cache
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\obj\Debug\netcoreapp3.1\FileLogger.dll
+C:\Users\Julien\source\repos\Github\Katas\FileLogger\obj\Debug\netcoreapp3.1\FileLogger.pdb
