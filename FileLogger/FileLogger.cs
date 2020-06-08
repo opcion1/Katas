@@ -5,14 +5,23 @@ using System.Text;
 
 namespace FileLogger
 {
-    public static class FileLogger
+    public class FileLogger
     {
-        public static void Log(string message)
+        private IFileWrapper _fileWrapper { get; set; }
+        public FileLogger(IFileWrapper fileWrapper)
         {
+            this._fileWrapper = fileWrapper;
+        }
+
+        public void Log(string message)
+        {
+            if (!_fileWrapper.FileExists("log.txt"))
+            {
+                _fileWrapper.CreateFile("log.txt");
+            }
             using (StreamWriter sw = new StreamWriter("log.txt", true))
             {
                 sw.WriteLine(message);
-                sw.Close();
             }
         }
     }

@@ -91,8 +91,10 @@ C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\bin\Debug\netcoreapp3.
 C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.csprojAssemblyReference.cache
 C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.AssemblyInfoInputs.cache
 C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.AssemblyInfo.cs
-C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.csproj.CopyComplete
 C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.dll
 C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.pdb
 C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.genruntimeconfig.cache
+C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\bin\Debug\netcoreapp3.1\Moq.dll
+C:\Users\Julien\source\repos\Github\Katas\FileLoggerTests\obj\Debug\netcoreapp3.1\FileLogger.Tests.csproj.CoreCompileInputs.cache
