@@ -11,12 +11,13 @@ namespace FileLoggerTests
 {
     public class FileLoggerTest
     {
-        private readonly MockFile _mockFile;
+        private readonly MockFileWrapper _mockWrapper;
+        private readonly MockFileLogic _mockLogic;
 
         public FileLoggerTest()
         {
-            _mockFile = new MockFile();
-            CreateTestFile();
+            _mockWrapper = new MockFileWrapper();
+            _mockLogic = new MockFileLogic();
         }
 
         private static void CreateTestFile()
@@ -31,34 +32,39 @@ namespace FileLoggerTests
         public void Log_WhenNotExists_CreateFile()
         {
             //Arrange
-            _mockFile
+            _mockWrapper
                 .Setup_FileExists(false)
                 .Setup_CreateFile();
-            FileLogger.FileLogger logger = new FileLogger.FileLogger(_mockFile.Object);
+            _mockLogic
+                .Setup_GetLogPathName("log.txt");
+            FileLogger.FileLogger logger = new FileLogger.FileLogger(_mockWrapper.Object, _mockLogic.Object);
 
             //Act
             logger.Log("Test");
 
             //Assert
-            _mockFile.Verify_FileExits(Times.Once);
-            _mockFile.Verify_CreateFile(Times.Once);
+            _mockWrapper.Verify_FileExits(Times.Once);
+            _mockWrapper.Verify_CreateFile(Times.Once);
         }
 
         [Fact]
         public void Log_WhenExists_DoNotCreateFile()
         {
             //Arrange
-            _mockFile
+            _mockWrapper
                 .Setup_FileExists(true)
                 .Setup_CreateFile();
-            FileLogger.FileLogger logger = new FileLogger.FileLogger(_mockFile.Object);
+            _mockLogic
+                .Setup_GetLogPathName("log.txt");
+            FileLogger.FileLogger logger = new FileLogger.FileLogger(_mockWrapper.Object, _mockLogic.Object);
 
             //Act
             logger.Log("Test");
 
             //Assert
-            _mockFile.Verify_FileExits(Times.Once);
-            _mockFile.Verify_CreateFile(Times.Never);
+            _mockWrapper.Verify_FileExits(Times.Once);
+            _mockWrapper.Verify_CreateFile(Times.Never);
         }
+
     }
 }
