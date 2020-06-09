@@ -1,17 +1,70 @@
 ﻿using FileLogger;
+using FileLogger.Tests.Mock;
+using Moq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Xunit;
 
-namespace FileLoggerTests
+namespace FileLogger.Tests
 {
     public class FileLoggerTest
     {
-        [Fact]
-        public void Log_AddMessageOK()
+        private readonly MockFileWrapper _mockWrapper;
+        private readonly MockFileLogic _mockLogic;
+
+        public FileLoggerTest()
         {
-            FileLogger.FileLogger.Log("Test");
+            _mockWrapper = new MockFileWrapper();
+            _mockLogic = new MockFileLogic();
         }
+
+        private static void CreateTestFile()
+        {
+            if (!File.Exists("log.txt"))
+            {
+                File.Create("log.txt");
+            }
+        }
+
+        [Fact]
+        public void Log_WhenNotExists_CreateFile()
+        {
+            //Arrange
+            _mockWrapper
+                .Setup_FileExists(false)
+                .Setup_CreateFile();
+            _mockLogic
+                .Setup_GetLogPathName("log.txt");
+            FileLogger logger = new FileLogger(_mockWrapper.Object, _mockLogic.Object);
+
+            //Act
+            logger.Log("Test");
+
+            //Assert
+            _mockWrapper.Verify_FileExits(Times.Once);
+            _mockWrapper.Verify_CreateFile(Times.Once);
+        }
+
+        [Fact]
+        public void Log_WhenExists_DoNotCreateFile()
+        {
+            //Arrange
+            _mockWrapper
+                .Setup_FileExists(true)
+                .Setup_CreateFile();
+            _mockLogic
+                .Setup_GetLogPathName("log.txt");
+            FileLogger logger = new FileLogger(_mockWrapper.Object, _mockLogic.Object);
+
+            //Act
+            logger.Log("Test");
+
+            //Assert
+            _mockWrapper.Verify_FileExits(Times.Once);
+            _mockWrapper.Verify_CreateFile(Times.Never);
+        }
+
     }
 }

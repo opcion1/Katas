@@ -5,14 +5,27 @@ using System.Text;
 
 namespace FileLogger
 {
-    public static class FileLogger
+    public class FileLogger
     {
-        public static void Log(string message)
+        private IFileWrapper _fileWrapper { get; set; }
+        private IFileLogic _fileLogic { get; set; }
+        public FileLogger(IFileWrapper fileWrapper,
+                            IFileLogic fileLogic)
         {
-            using (StreamWriter sw = new StreamWriter("log.txt", true))
+            _fileWrapper = fileWrapper;
+            _fileLogic = fileLogic;
+        }
+
+        public void Log(string message)
+        {
+            string logPath = _fileLogic.GetLogPathName(DateTime.Today);
+            if (!_fileWrapper.FileExists(logPath))
+            {
+                _fileWrapper.CreateFile(logPath);
+            }
+            using (StreamWriter sw = new StreamWriter(logPath, true))
             {
                 sw.WriteLine(message);
-                sw.Close();
             }
         }
     }
