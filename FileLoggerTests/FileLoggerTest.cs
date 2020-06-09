@@ -7,7 +7,7 @@ using System.IO;
 using System.Text;
 using Xunit;
 
-namespace FileLoggerTests
+namespace FileLogger.Tests
 {
     public class FileLoggerTest
     {
@@ -37,7 +37,7 @@ namespace FileLoggerTests
                 .Setup_CreateFile();
             _mockLogic
                 .Setup_GetLogPathName("log.txt");
-            FileLogger.FileLogger logger = new FileLogger.FileLogger(_mockWrapper.Object, _mockLogic.Object);
+            FileLogger logger = new FileLogger(_mockWrapper.Object, _mockLogic.Object);
 
             //Act
             logger.Log("Test");
@@ -56,7 +56,7 @@ namespace FileLoggerTests
                 .Setup_CreateFile();
             _mockLogic
                 .Setup_GetLogPathName("log.txt");
-            FileLogger.FileLogger logger = new FileLogger.FileLogger(_mockWrapper.Object, _mockLogic.Object);
+            FileLogger logger = new FileLogger(_mockWrapper.Object, _mockLogic.Object);
 
             //Act
             logger.Log("Test");

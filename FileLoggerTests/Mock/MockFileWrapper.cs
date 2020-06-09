@@ -20,6 +20,22 @@ namespace FileLogger.Tests.Mock
         {
             Setup(f => f.CreateFile(It.IsAny<string>()))
                 .Verifiable();
+
+            return this;
+        }
+        public MockFileWrapper Setup_GetLastWriteTime(DateTime testDate)
+        {
+            Setup(f => f.GetLastWriteTime(It.IsAny<string>()))
+                .Returns(testDate)
+                .Verifiable();
+
+            return this;
+        }
+        public MockFileWrapper Setup_MoveFile()
+        {
+            Setup(f => f.MoveFile(It.IsAny<string>(), It.IsAny<string>()))
+                .Verifiable();
+
             return this;
         }
 
@@ -33,6 +49,27 @@ namespace FileLogger.Tests.Mock
         public MockFileWrapper Verify_CreateFile(Func<Times> times)
         {
             Verify(x => x.CreateFile(It.IsAny<string>()), times);
+
+            return this;
+        }
+
+        public MockFileWrapper Verify_GetLastWriteTime(Func<Times> times)
+        {
+            Verify(x => x.GetLastWriteTime(It.IsAny<string>()), times);
+
+            return this;
+        }
+
+        public MockFileWrapper Verify_MoveFile_withNewFileName(string newFileNameExpected, Func<Times> times)
+        {
+            Verify(x => x.MoveFile(It.IsAny<string>(), newFileNameExpected), times);
+
+            return this;
+        }
+
+        public MockFileWrapper Verify_MoveFile(Func<Times> times)
+        {
+            Verify(x => x.MoveFile(It.IsAny<string>(),It.IsAny<string>()), times);
 
             return this;
         }

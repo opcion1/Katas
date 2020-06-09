@@ -9,6 +9,8 @@ namespace FileLogger
     {
         bool FileExists(string path);
         void CreateFile(string path);
+        DateTime GetLastWriteTime(string path);
+        void MoveFile(string oldPath, string newPath);
     }
 
     public class FileWrapper : IFileWrapper
@@ -21,6 +23,16 @@ namespace FileLogger
         public bool FileExists(string path)
         {
             return File.Exists(path);
+        }
+
+        public DateTime GetLastWriteTime(string path)
+        {
+            return File.GetLastWriteTime(path);
+        }
+
+        public void MoveFile(string oldPath, string newPath)
+        {
+            File.Move(oldPath, newPath);
         }
     }
 }
